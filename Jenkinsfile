@@ -1,25 +1,29 @@
 pipeline {
-    stage("Check out from SCM") {
-        steps {
-            git branch: 'main', credentialsId: 'github', url: 'https://github.com/ansarisarim/register-app.git'
-        }
+    agent { label 'Jenkins-Agent' }
+    tools {
+        jdk 'JDK 17'
+        maven 'maven3'
     }
-
-    stage("build application") {
-        environment {
-            JAVA_HOME = "${tool 'JDK 17'}"
+    stages {
+        stage("Check out from SCM") {
+            steps {
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/ansarisarim/register-app.git'
+            }
         }
-        steps {
-            sh """
-                echo "JAVA_HOME: ${JAVA_HOME}"
-                mvn clean package
-            """
-        }
-    }
 
-    stage("test application") {
-        steps {
-            sh "mvn test"
+        stage("build application") {
+            steps {
+                sh """
+                    echo "JAVA_HOME: ${JAVA_HOME}"
+                    mvn clean package
+                """
+            }
+        }
+
+        stage("test application") {
+            steps {
+                sh "mvn test"
+            }
         }
     }
 }
