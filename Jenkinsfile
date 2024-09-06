@@ -1,3 +1,4 @@
+pipeline {
     stage("Check out from SCM") {
         steps {
             git branch: 'main', credentialsId: 'github', url: 'https://github.com/ansarisarim/register-app.git'
