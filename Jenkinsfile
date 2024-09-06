@@ -4,9 +4,6 @@ pipeline {
         jdk 'JDK 17'
         maven 'maven3'
     }
-    environment {
-        JAVA_HOME = "${tool 'JDK 17'}"
-    }
     stages {
         stage("Cleanup Workspace") {
             steps {
@@ -21,6 +18,9 @@ pipeline {
         }
 
         stage("build application") {
+            environment {
+                JAVA_HOME = "${tool 'JDK 17'}"
+            }
             steps {
                 sh "mvn clean package"
             }
