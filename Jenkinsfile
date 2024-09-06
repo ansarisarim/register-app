@@ -22,7 +22,10 @@ pipeline {
                 JAVA_HOME = "${tool 'JDK 17'}"
             }
             steps {
-                sh "mvn clean package"
+                sh """
+                    echo "JAVA_HOME: ${JAVA_HOME}"
+                    mvn clean package
+                """
             }
         }
 
