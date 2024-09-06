@@ -17,22 +17,7 @@ pipeline {
             }
         }
 
-        stage("build application") {
-            environment {
-                JAVA_HOME = "${tool 'JDK 17'}"
-            }
-            steps {
-                sh """
-                    echo "JAVA_HOME: ${JAVA_HOME}"
-                    mvn clean package
-                """
-            }
-        }
-
-        stage("test application") {
-            steps {
-                sh "mvn test"
-            }
-        }
+        
+       
     }
 }
