@@ -13,10 +13,7 @@ pipeline {
 
         stage("build application") {
             steps {
-                sh """
-                    echo "JAVA_HOME: ${JAVA_HOME}"
-                    mvn clean package
-                """
+               sh "mvn clean package"
             }
         }
 
