@@ -4,6 +4,15 @@ pipeline {
         jdk 'java17'
         maven 'maven3'
     }
+    environment {
+	    APP_NAME = "register-app-pipeline"
+            RELEASE = "1.0.0"
+            DOCKER_USER = "ansarisarim"
+            DOCKER_PASS = 'Sarim@321'
+            IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+            IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+    }	
+	
     stages {
         stage("Check out from SCM") {
             steps {
